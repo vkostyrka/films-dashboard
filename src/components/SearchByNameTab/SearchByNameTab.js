@@ -5,14 +5,21 @@ class SearchByNameTab extends React.Component{
     super(props);
     this.state = {
       searchInput: "",
-      results: {},
+      results: [],
+      errorsList: [],
     };
   }
 
   sendRequest() {
     fetch(`${process.env.REACT_APP_API_HOST}search/movie?query=${this.state.searchInput}&api_key=${process.env.REACT_APP_API_KEY}`)
-      .then(function (response) {
-        console.log(response.json())
+      .then(response => response.json())
+      .then(data => {
+        data.results.length ?
+          this.setState({results: data.results, errorsList: []}) :
+          this.setState({results: [], errorsList: ["Not Found"]})
+      })
+      .catch(error => {
+        this.setState({errorsList: error.errors})
       })
   }
 
@@ -24,7 +31,7 @@ class SearchByNameTab extends React.Component{
     return (
       <div className="search-by-name-tab">
         <input placeholder="Enter a film name" type="text" onChange={this.handleChange.bind(this)}/>
-        <button onClick={this.sendRequest.bind(this)}>Submit</button>
+        <input type="submit" onClick={this.sendRequest.bind(this)} value="Search" />
       </div>
     );
   }
