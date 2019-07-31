@@ -2,6 +2,7 @@ import React from 'react';
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import SearchByNameTab from "../SearchByNameTab/SearchByNameTab";
+import LatestMovie from "../LatestMovie/LatestMovie"
 
 class HeaderTabs extends React.Component{
   render() {
@@ -13,6 +14,9 @@ class HeaderTabs extends React.Component{
           </Tab>
           <Tab eventKey="topFilms" title="TOP films">
             Lorem Ipsum
+          </Tab>
+          <Tab eventKey="latestFilms" title="Latest films">
+            <LatestMovie />
           </Tab>
         </Tabs>
       </div>
