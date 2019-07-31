@@ -32,11 +32,11 @@ class SearchByNameTab extends React.Component{
 
   render() {
     const filmsList = this.state.results;
-    const resultSearch = filmsList.map((item) =>
+    const resultSearch = filmsList.map(item =>
       <MovieCard attributes={item} key={item.id} />
     );
     const errors = this.state.errorsList;
-    const errorsMessages = errors.map((item) =>
+    const errorsMessages = errors.map(item =>
       <p className="text-danger">{item}</p>
     );
 

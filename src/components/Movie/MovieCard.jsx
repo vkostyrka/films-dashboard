@@ -2,18 +2,21 @@ import React from "react";
 import MovieConstants from "./MovieConstants";
 
 export default function MovieCard(props) {
+  const poster = props.attributes.poster_path ?
+    <img
+      src={
+        MovieConstants.imageSource + props.attributes.poster_path
+      }
+      className="card-img-top"
+      alt={props.title}
+    /> : null;
+
   return (
     <div className="col-6">
       <div className="card mb-3" style={{ maxWidth: "740px" }}>
         <div className="row no-gutters">
           <div className="col-md-4">
-            <img
-              src={
-                MovieConstants.imageSource + props.attributes.poster_path
-              }
-              className="card-img-top"
-              alt={props.attributes.title}
-            />
+            {poster}
             <div className="card">
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
