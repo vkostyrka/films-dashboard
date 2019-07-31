@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import MovieConstants from "./MovieConstants";
 
 export default function MovieCard(props) {
   return (
-    <div>
+    <div className="col-6">
       <div className="card mb-3" style={{ maxWidth: "740px" }}>
         <div className="row no-gutters">
           <div className="col-md-4">
@@ -18,7 +18,7 @@ export default function MovieCard(props) {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   Popularity:{" "}
-                  <span class="badge badge-secondary">
+                  <span className="badge badge-secondary">
                     {props.attributes.popularity}
                   </span>
                 </li>
@@ -36,13 +36,13 @@ export default function MovieCard(props) {
               <ul className="d-flex justify-content-around">
                 <span>
                   Vote{" "}
-                  <span class="badge badge-secondary">
+                  <span className="badge badge-secondary">
                     {props.attributes.vote_count}
                   </span>
                 </span>
                 <span>
                   Vote average{" "}
-                  <span class="badge badge-secondary">
+                  <span className="badge badge-secondary">
                     {props.attributes.vote_average}
                   </span>
                 </span>
