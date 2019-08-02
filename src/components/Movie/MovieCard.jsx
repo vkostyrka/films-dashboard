@@ -2,18 +2,21 @@ import React from "react";
 import MovieConstants from "./MovieConstants";
 
 export default function MovieCard(props) {
-  const poster = props.attributes.poster_path ?
-    <img
-      src={
-        MovieConstants.imageSource + props.attributes.poster_path
-      }
-      className="card-img-top"
-      alt={props.title}
-    /> : null;
+  const poster = props.attributes.poster_path
+    ? <img
+        src={ MovieConstants.imageSource + props.attributes.poster_path }
+        className="card-img-top"
+        alt={props.title}
+      />
+    : <img
+        src={process.env.PUBLIC_URL + '/images/default-movie.jpg'}
+        className="card-img-top"
+        alt="default-image"
+    />;
 
   return (
     <div className="col-6">
-      <div className="card mb-3" style={{ maxWidth: "740px" }}>
+      <div className="card mb-3" style={{maxWidth: "740px"}}>
         <div className="row no-gutters">
           <div className="col-md-4">
             {poster}
@@ -55,6 +58,8 @@ export default function MovieCard(props) {
                   Release: {props.attributes.release_date}
                 </small>
               </p>
+              <button className="btn btn-info" onClick={() => props.showMoreInfo(props.attributes.id)}>Show More
+              </button>
             </div>
           </div>
         </div>
