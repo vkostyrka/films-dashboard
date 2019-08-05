@@ -1,6 +1,5 @@
 import React from 'react';
 import MovieCard from "../Movie/MovieCard";
-import MovieItem from "../Movie/MovieItem";
 
 class SearchByNameTab extends React.Component {
   constructor(props) {
@@ -9,11 +8,9 @@ class SearchByNameTab extends React.Component {
       searchInput: "",
       results: [],
       errorsList: [],
-      moreDetailsMovie: {},
     };
     this.sendRequestBySearchInput = this.sendRequestBySearchInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.showMoreInfo = this.showMoreInfo.bind(this);
   }
 
   sendRequestBySearchInput() {
@@ -33,27 +30,10 @@ class SearchByNameTab extends React.Component {
     this.setState({searchInput: e.target.value})
   }
 
-  showMoreInfo(movieId) {
-    fetch(`${process.env.REACT_APP_API_HOST}movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          results: this.state.results.filter(item => item.id === movieId),
-          moreDetailsMovie: data
-        })
-      });
-  }
-
-  renderMoreInfoBlock() {
-    if (Object.entries(this.state.moreDetailsMovie).length) {
-      return <MovieItem movieData={this.state.moreDetailsMovie}/>;
-    }
-  }
-
   render() {
     const filmsList = this.state.results;
     const resultSearch = filmsList.map(item =>
-      <MovieCard attributes={item} showMoreInfo={this.showMoreInfo} key={item.id}/>
+      <MovieCard attributes={item} key={item.id}/>
     );
     const errors = this.state.errorsList;
     const errorsMessages = errors.map(item =>
@@ -67,7 +47,6 @@ class SearchByNameTab extends React.Component {
         {errorsMessages}
         <div className="row">
           {resultSearch}
-          {this.renderMoreInfoBlock()}
         </div>
       </div>
     );

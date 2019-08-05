@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function MovieCard(props) {
+export default function MovieItem(props) {
   const genres = props.movieData.genres.map(item =>
     <span className="mx-2" key={item.id}>{item.name}</span>
   );
@@ -12,7 +12,7 @@ export default function MovieCard(props) {
   );
 
   return (
-    <div className="card mb-3" style={{maxWidth: "740px"}}>
+    <div className="movie-item">
       <h2 className="card-title">{props.movieData.title} Details</h2>
       <div className="card-body">
         <p>Budget: {props.movieData.budget} $</p>
