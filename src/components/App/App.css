@@ -1,3 +1,43 @@
 .App {
   text-align: center;
 }
+.App .nav {
+  background: #00a0b5;
+}
+.App .nav a {
+  color: #fff;
+}
+.custom-search .form-field {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 800px;
+}
+.custom-search .form-group select {
+  width: 200px;
+}
+.custom-search .form-group input[type="range"] {
+  display: flex;
+  width: 14vw;
+}
+/* circle block with number */
+.total-results-number {
+  display: flex;
+  background: #00a0b5;
+  width: 70px;
+  height: 70px;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -35px auto 12px;
+}
+#spinner {
+  z-index: 1;
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  top: 40%;
+  left: 43%;
+}

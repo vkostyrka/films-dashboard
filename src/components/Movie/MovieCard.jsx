@@ -1,62 +1,68 @@
 import React from "react";
 import MovieConstants from "./MovieConstants";
 import MovieItem from "./MovieItem";
-import Modal from "react-modal"
+import Modal from "react-modal";
 
 export default class MovieCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      moreDataAboutMovie: {}
+      moreDataAboutMovie: {},
     };
     this.showMoreLessMovieInfo = this.showMoreLessMovieInfo.bind(this);
-    this.isMoreDataAboutMoviePresent = this.isMoreDataAboutMoviePresent.bind(this);
+    this.isMoreDataAboutMoviePresent = this.isMoreDataAboutMoviePresent.bind(
+      this,
+    );
   }
 
   isMoreDataAboutMoviePresent() {
-    return !!Object.entries(this.state.moreDataAboutMovie).length
+    return !!Object.entries(this.state.moreDataAboutMovie).length;
   }
 
   showMoreLessMovieInfo() {
     if (this.isMoreDataAboutMoviePresent()) {
       this.setState({
-        moreDataAboutMovie: {}
-      })
+        moreDataAboutMovie: {},
+      });
     } else {
-      fetch(`${process.env.REACT_APP_API_HOST}movie/${this.props.attributes.id}?api_key=${process.env.REACT_APP_API_KEY}`)
+      fetch(
+        `${process.env.REACT_APP_API_HOST}movie/${
+          this.props.attributes.id
+        }?api_key=${process.env.REACT_APP_API_KEY}`,
+      )
         .then(response => response.json())
         .then(data => {
           this.setState({
-            moreDataAboutMovie: data
-          })
+            moreDataAboutMovie: data,
+          });
         });
     }
   }
 
   renderMoreInfo() {
     if (this.isMoreDataAboutMoviePresent()) {
-      return (
-        <MovieItem movieData={this.state.moreDataAboutMovie}/>
-      )
+      return <MovieItem movieData={this.state.moreDataAboutMovie} />;
     }
   }
 
   render() {
-    const poster = this.props.attributes.poster_path
-      ? <img
+    const poster = this.props.attributes.poster_path ? (
+      <img
         src={MovieConstants.imageSource + this.props.attributes.poster_path}
         className="card-img-top"
         alt={this.props.title}
       />
-      : <img
-        src={process.env.PUBLIC_URL + '/images/default-movie.jpg'}
+    ) : (
+      <img
+        src={process.env.PUBLIC_URL + "/images/default-movie.jpg"}
         className="card-img-top"
         alt="default"
-      />;
+      />
+    );
 
     return (
-      <div className="col-6">
-        <div className="card mb-3" style={{maxWidth: "740px"}}>
+      <div className="col-6 d-flex justify-content-center mt-5">
+        <div className="card mb-3" style={{ maxWidth: "740px" }}>
           <div className="row no-gutters">
             <div className="col-md-4">
               {poster}
@@ -65,8 +71,8 @@ export default class MovieCard extends React.Component {
                   <li className="list-group-item">
                     Popularity:{" "}
                     <span className="badge badge-secondary">
-                    {this.props.attributes.popularity}
-                  </span>
+                      {this.props.attributes.popularity}
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -80,18 +86,18 @@ export default class MovieCard extends React.Component {
                 </div>
                 <p className="card-text">{this.props.attributes.overview}</p>
                 <ul className="d-flex justify-content-around">
-                <span>
-                  Vote{" "}
-                  <span className="badge badge-secondary">
-                    {this.props.attributes.vote_count}
-                  </span>
-                </span>
                   <span>
-                  Vote average{" "}
+                    Vote{" "}
                     <span className="badge badge-secondary">
-                    {this.props.attributes.vote_average}
+                      {this.props.attributes.vote_count}
+                    </span>
                   </span>
-                </span>
+                  <span>
+                    Vote average{" "}
+                    <span className="badge badge-secondary">
+                      {this.props.attributes.vote_average}
+                    </span>
+                  </span>
                 </ul>
                 <p className="card-text">
                   <small className="text-muted">
@@ -100,7 +106,8 @@ export default class MovieCard extends React.Component {
                 </p>
                 <button
                   className="btn btn-info"
-                  onClick={this.showMoreLessMovieInfo}>
+                  onClick={this.showMoreLessMovieInfo}
+                >
                   Show More
                 </button>
               </div>
