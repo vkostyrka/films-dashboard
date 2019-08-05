@@ -4,7 +4,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import SearchByNameTab from "../SearchByNameTab/SearchByNameTab";
 import LatestMovie from "../LatestMovie/LatestMovie"
 
-class HeaderTabs extends React.Component{
+class HeaderTabs extends React.Component {
   render() {
     return (
       <div className="HeaderTabs">
