@@ -42,12 +42,15 @@ class SearchByNameTab extends React.Component {
 
     return (
       <div className="search-by-name-tab">
-        <input placeholder="Enter a film name" type="text" onChange={this.handleChange}/>
-        <input type="submit" onClick={this.sendRequestBySearchInput} value="Search"/>
-        {errorsMessages}
-        <div className="row">
-          {resultSearch}
+        <div className="d-flex d-flex align-items-baseline form-field col-6 offset-3 mt-4">
+          <input placeholder="Enter a film name" type="text" className="form-control mb-4 mr-3 border rounded-lg border-info" onChange={this.handleChange}/>
+          <input type="submit" className="btn btn-info" onClick={this.sendRequestBySearchInput} value="Search"/>
+          {errorsMessages}
         </div>
+
+        <div className="row">
+            {resultSearch}
+          </div>
       </div>
     );
   }

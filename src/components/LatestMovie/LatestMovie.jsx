@@ -17,7 +17,7 @@ class LatestMovie extends React.Component {
 
   render() {
     return (
-      <div className="latest-film row">
+      <div className="latest-film row d-flex justify-content-center">
         <MovieCard attributes={this.state.latestMovie} />
       </div>
     )

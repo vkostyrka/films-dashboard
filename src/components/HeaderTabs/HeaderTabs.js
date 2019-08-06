@@ -13,9 +13,6 @@ class HeaderTabs extends React.Component {
           <Tab eventKey="searchByName" title="Search by name">
             <SearchByNameTab />
           </Tab>
-          <Tab eventKey="topFilms" title="TOP films">
-            Lorem Ipsum
-          </Tab>
           <Tab eventKey="latestFilms" title="Latest films">
             <LatestMovie />
           </Tab>
