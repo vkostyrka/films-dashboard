@@ -1,5 +1,8 @@
 import React from 'react';
 import MovieCard from "../Movie/MovieCard";
+import { connect } from "react-redux";
+
+const mapStateToProps = store => ({ movie: store.movie });
 
 class SearchByNameTab extends React.Component {
   constructor(props) {
@@ -11,6 +14,10 @@ class SearchByNameTab extends React.Component {
     };
     this.sendRequestBySearchInput = this.sendRequestBySearchInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.dispatch({type: "LATEST_MOVIE_REJECTED", payload: {}})
   }
 
   sendRequestBySearchInput() {
@@ -39,6 +46,7 @@ class SearchByNameTab extends React.Component {
     const errorsMessages = errors.map(item =>
       <p className="text-danger">{item}</p>
     );
+    const { movie } = this.props
 
     return (
       <div className="search-by-name-tab">
@@ -46,6 +54,10 @@ class SearchByNameTab extends React.Component {
           <input placeholder="Enter a film name" type="text" className="form-control mb-4 mr-3 border rounded-lg border-info" onChange={this.handleChange}/>
           <input type="submit" className="btn btn-info" onClick={this.sendRequestBySearchInput} value="Search"/>
           {errorsMessages}
+        </div>
+
+        <div className="latest-film row d-flex justify-content-center">
+          <MovieCard attributes={movie.latestMovie} />
         </div>
 
         <div className="row">
@@ -56,4 +68,4 @@ class SearchByNameTab extends React.Component {
   }
 }
 
-export default SearchByNameTab
+export default connect(mapStateToProps)(SearchByNameTab)
