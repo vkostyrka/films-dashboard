@@ -1,17 +1,20 @@
 import React from "react";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HeaderTabs from "../HeaderTabs/HeaderTabs";
-import Modal from "react-modal"
+import Modal from "react-modal";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
-function App() {
-  return (
-    <div className="App">
-      <HeaderTabs />
-    </div>
-  );
+class App extends React.Component {
+  render(){
+    return (
+      <div className="App">
+        <HeaderTabs />
+      </div>
+    );
+  }
 }
 
-export default App;
+export default (App);

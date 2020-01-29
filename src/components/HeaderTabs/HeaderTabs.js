@@ -10,11 +10,11 @@ class HeaderTabs extends React.Component {
     return (
       <div className="HeaderTabs">
         <Tabs id="controlled-tab-example">
-          <Tab eventKey="searchByName" title="Search by name">
-            <SearchByNameTab />
-          </Tab>
           <Tab eventKey="latestFilms" title="Latest films">
             <LatestMovie />
+          </Tab>
+          <Tab eventKey="searchByName" title="Search by name">
+            <SearchByNameTab />
           </Tab>
           <Tab eventKey="customizedSearch" title="Custom search">
             <CustomSearch />
